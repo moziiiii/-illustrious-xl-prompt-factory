@@ -1,14 +1,7 @@
 ---
-name: nsfw-prompt-factory
+name: illustrious-xl-prompt-factory
 description: >
-  NSFW提示词工厂——给角色+主题+N张图，自动推断色情等级弧线并生成完整prompt。
-  基于S/A/B/C四级色情等级系统驱动标签选择。
-  触发：当你描述"XX角色 + 一个主题 + 多少张图"时——例如"纳西妲 堕落 5张"、"芙莉莲 酒馆勾引到野战 4张"、"阮梅 反差母狗 6张"。
-  也支持单图："阮梅 B级表情 站姿"。先出剧情大纲确认，再展开完整prompt。
-compatibility:
-  - SD WebUI Forge
-  - Illustrious-XL v2.0 系模型
-  - Renbocloud Style LoRA (0.5~0.6)
+  Illustrious XL 提示词工厂——基于S/A/B/C四级色情等级系统，为Illustrious-XL v2.0系模型生成精确NSFW提示词。
 ---
 
 # NSFW提示词工厂
