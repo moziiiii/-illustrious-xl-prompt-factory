@@ -1,5 +1,7 @@
 # Illustrious XL Prompt Factory
 
+[中文](./README.zh.md)
+
 A **Claude Code Skill** that generates structured NSFW prompts for **Illustrious XL v2.0** based Stable Diffusion models.
 
 ## What it does
