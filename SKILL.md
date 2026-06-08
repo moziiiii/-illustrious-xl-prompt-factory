@@ -1,7 +1,13 @@
 ---
-name: illustrious-xl-prompt-factory
+name: nsfw-prompt-factory
 description: >
-  Illustrious XL 提示词工厂——基于S/A/B/C四级色情等级系统，12条弧线×45+体位配对。
+  NSFW提示词工厂——给角色+主题+N张图，自动推断色情等级弧线并生成完整prompt。
+  基于S/A/B/C四级色情等级系统驱动标签选择。12条弧线×45+体位配对。
+  触发："角色 + 主题 + 多少张图"。也支持单图+随机模式。先出剧情大纲确认，再展开prompt。
+compatibility:
+  - SD WebUI Forge / ComfyUI
+  - Illustrious-XL v2.0 系 (NoobAI/WaiNSFW/HassakuXL 兼容)
+  - Renbocloud Style LoRA (0.6, 可选)
 ---
 
 # NSFW 提示词工厂
@@ -134,3 +140,4 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 | `cover-templates.md` | 5种封面+对比公式 |
 | `latex-catsuit-template.md` | 9锚点母狗服模板 |
 | `male-character-options.md` | 男性角色可选模板 |
+| `inpaint-hand-fix.md` | Inpaint 手脚修复一体化模板 |
