@@ -88,6 +88,16 @@ S级模板见 `latex-catsuit-template.md`。用户说"换颜色/材质"即可改
 ### 模块7：机位/环境
 按等级选镜头。兼容性查 `compatibility-matrix.md`
 
+**光照自动轮换**（5选1，别15张图同一种光）：
+```
+① upper half hot pink lower half dark black gradient, dramatic spotlight, moody_lighting
+② rim light, strong rim light, dark background, cinematic_lighting
+③ golden hour lighting, warm glow, against backlight at dusk, intense shadows
+④ volumetric_lighting, Tyndall effect, god rays, atmospheric, dim
+⑤ glowing neon lights, purple and blue ambient, dark atmosphere, moody_lighting
+```
+每3~5张换一种光照。裸露图避免①（粉紫渐变+裸体=容易翻车），选②④。
+
 ### 模块8：堕落标记（S级专用）
 身体写字(3~5部位)：`cum dump on belly, public property on thigh, free use on chest, whore on forehead, BBC only above pussy` 等。分布额头+胸+肚子+大腿+臀。
 

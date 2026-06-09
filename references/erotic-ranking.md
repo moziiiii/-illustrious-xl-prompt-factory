@@ -8,10 +8,10 @@
 
 | 等级 | 标签池 |
 |------|--------|
-| **S** | `ahegao, rape_face, female_orgasm, crossed_eyes, rolling_eyes, long_tongue, drooling, saliva, drool_string, tears, cum_on_face, cum_on_tongue` |
-| **A** | `bedroom_eyes, dilated_pupils, heavy_blush, biting_lip, licking_lips, seductive_smile, smirk, naughty_face, moaning, heavy_breathing, endured_face, trembling` |
-| **B** | `open_mouth, parted_lips, blush, light_blush, shy, embarrassed, flustered, eye-contact, head_tilt, looking_up, tongue_out, french_kiss` |
-| **C** | `serene expression, calm, closed_eyes, slight smile, elegant, noble, curious, neutral, looking_away, sincere` |
+| **S** | `ahegao, rape_face, female_orgasm, crossed_eyes, rolling_eyes, long_tongue, drooling, saliva, drool_string, tears, cum_on_face, cum_on_tongue, spasm, trembling, twitching, dark_persona, crazy, mind_broken` |
+| **A** | `bedroom_eyes, dilated_pupils, heavy_blush, biting_lip, licking_lips, seductive_smile, smirk, smug, naughty_face, moaning, heavy_breathing, endured_face, trembling, drunk, scared, wince, jitome, despair, anguish` |
+| **B** | `open_mouth, parted_lips, blush, light_blush, shy, embarrassed, flustered, eye-contact, head_tilt, looking_up, tongue_out, french_kiss, confused, thinking, sigh, teasing_smile, giggling, sleepy, bored` |
+| **C** | `serene expression, calm, closed_eyes, slight smile, elegant, noble, curious, neutral, looking_away, sincere, expressionless` |
 
 ## 服装（按等级）
 
