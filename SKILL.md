@@ -61,14 +61,12 @@ N=5 堕落弧：C, B, A, S, S
 ## 7+1模块
 
 ### 模块1：底座
-```
-<lora:IL_Renbocloud Style:0.6>, (explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,
-```
-无LoRA则去掉lora行。
+**有 LoRA**：`<lora:IL_Renbocloud Style:0.6>, (explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
+**无 LoRA**：`(explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
 
 ### 模块2：角色
 - **角色标签**：查 `danbooru-character-tags.md`。C/B级原皮，A/S级堕落色
-- **男性**：默认 `black man, muscular, dark skin, huge black cock, bbc`。用户可换，见 `male-character-options.md`
+- **男性**：**不默认，问用户**。首次双人图问"男主类型？BBC/亚裔/白人/无脸？" → `male-character-options.md`
 - **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一。MMF 用 `male behind, male in front` 不用 `male1, male2`
 - **S级角色锚点防丢失**：堕落越深AI越画不像。每张 S 级强制保留 1 个角色特征锚点——`elf ears, pointed ears`(芙莉莲), `white hair twin tails`(芙莉莲), `ahoge`(芙宁娜), `horns`(甘雨) 等。从 Danbooru 外貌特征查
 
@@ -132,11 +130,11 @@ C/B级多用 `hair_tucking, leaning, drying`（日常感）。A/S级多用 `trem
 ```
 每3~5张换一种光照。裸露图避免①（粉紫渐变+裸体=容易翻车），选②④。
 
-**场景质感轮换**（每张图从每列选1个，别15张同一种地板/道具/织物）：
+**场景质感池**（阶段切换时换一组，同阶段内不变。服从阶段场景锁）：
 ```
-地板: tile_floor, wooden_floor, wet_floor, cold_stone_floor, carpet, dirty_floor
-道具: curtains, mirror, candles, scattered_clothes, window, lamp, broken_items
-织物: rumpled_sheets, pillow, mattress, cushions, torn_fabric, discarded_blanket
+地板: tile_floor, wooden_floor, wet_floor, cold_stone_floor, carpet
+道具: curtains, mirror, candles, scattered_clothes, window, lamp
+织物: rumpled_sheets, pillow, mattress, cushions, torn_fabric
 ```
 
 **场景道具时间线**（锁场景但让时间流动——同阶段内递进）：
@@ -153,6 +151,13 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 ---
 
 ## 硬规则
+
+### 🚨 出图炸了怎么办
+- **纯黑/纯白图** → CFG 太高或提示词太短。降 CFG 到 3.5，加场景描述词
+- **畸形/触手** → 反向词手脚高压线不够。加 `(extra arms:1.3), (extra legs:1.3), (mutated hands:1.3)`
+- **脸崩** → ADetailer 没开。开了还崩→降 Denoising 到 0.35
+- **连续3张都翻车** → 退回最后一次成功版本重来，别继续修
+- **服装不跟** → 材质锚点太少。B/A 级加材质词（denim/lace/sheer），S 级用 9 锚点模板
 
 | 规则 | 值 |
 |------|-----|
@@ -186,51 +191,24 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 ### 节奏
 每3~5张换角度/体位/服装。4张S级高潮体位不重复。
 
-### 反模板引擎（最重要——防止套用同一套标签）
+### 反模板 + 阶段锁（核心——别套模板）
 
-**不是池子大了就丰富——是选择规则决定丰富度。**
+**3 条铁律**：
+1. **表情分区选**：S/A 级各有 4 口味区，每张主攻 1 区+从其他借 2 个。体位自动配对表情区（后背→口水系/骑乘→诱惑系/折叠→阿黑颜系/口交→口水+眼泪/M字→崩坏系）
+2. **同阶段锁场景**：同阶段地板/床单/道具/光照不变。只换体位+表情+手部+镜头。阶段切换才换场景
+3. **4 张 S 级递进**：体位不重复 + 妆容递进(intact→smeared→ruined→gone) + 道具时间线(candles lit→half→gone→morning)
 
-| 规则 | 说明 |
-|------|------|
-| **表情池分区** | 同等级 20+ 个表情标签，分 4 个"口味区"。每次生成从不同口味区挑，不是从全体池子挑 |
-| **体位轮换** | 同弧线同等级有 2~3 候选体位，强制和前一张不同 |
-| **光照按阶段轮换** | 5 种光照，同阶段不变，阶段切换时换 |
-| **手部动作绑定体位** | 每个体位有专属手部动作，换体位=手部自动换 |
-| **场景质感同阶段锁死** | 同阶段同场景→地板/道具/织物不变。阶段切换才换 |
-| **同一主题二次运行** | 第二次跑同主题，起始区+体位首选项全换 |
+| 阶段 | 场景 | 锁什么 |
+|------|------|--------|
+| 建立(C/B) | 公开(公会/教室) | 整洁+日常光 |
+| 挑逗(B/A) | 私密(卧室/后台) | 布景开始松 |
+| 核心(S) | **同场景4张锁死** | 地板/床单/灯光。只换体位+表情+手部+镜头 |
+| 余韵(A) | 同场景氛围换 | 床乱/烛灭/晨光 |
+| 收尾(B) | 同场景或原点 | 穿衣/坐回 |
 
-### 阶段场景锁（核心——不是每张图换场景）
+**S 级 4 口味区**：🔥阿黑颜系 `ahegao,crossed_eyes,rolling_eyes,tongue_out,drooling` / 💀黑化系 `dark_persona,crazy,mind_broken,empty_eyes` / 💧崩坏系 `spasm,trembling,twitching,tears,moaning` / 🤤口水系 `saliva,drool_string,tongue_out,cum_on_face,cum_on_tongue`
 
-```
-同一个阶段 = 同一个地点 + 同一个环境细节
-不同阶段 = 场景可以切换（如公会→卧室→暗巷）
-```
-
-| 阶段 | 场景规则 |
-|------|---------|
-| **建立**(C/B) | 公开场景(公会/教室/法庭)，整洁，日常光照 |
-| **挑逗**(B/A) | 过渡私密场景(卧室/后台/浴室)，布景开始松动 |
-| **核心高潮**(S) | **同场景连续4张**。地板/床单/道具/光照全锁死。4张只换：体位+表情口味区+手部+镜头角度 |
-| **余韵**(A) | 同场景但氛围切换——床更乱、蜡烛熄灭、晨光入窗 |
-| **收尾**(B) | 同场景或回到原点——穿回衣服、坐回原位 |
-
-**S级表情 4 口味区**（从池子里挑不同分区）：
-```
-🔥 阿黑颜系: ahegao, rape_face, female_orgasm, crossed_eyes, rolling_eyes, tongue_out, drooling
-💀 黑化系: dark_persona, crazy, mind_broken, multiple_persona, empty_eyes, expressionless
-💧 崩坏系: spasm, trembling, twitching, tears, heavy_breathing, moaning, endured_face
-🤤 口水系: saliva, drool_string, long_tongue, cum_on_face, cum_on_tongue, open_mouth
-```
-每个 S 级场景从 1 个口味区为主 + 从其他 3 区各借 1~2 个标签。别 4 张 S 级全用阿黑颜系。
-
-**A级表情 4 口味区**：
-```
-😈 诱惑系: bedroom_eyes, seductive_smile, smirk, smug, naughty_face, biting_lip, licking_lips
-😰 崩溃系: scared, despair, anguish, wince, jitome, trembling, endured_face
-🍷 迷醉系: drunk, heavy_blush, dilated_pupils, sleepy, confused, heavy_breathing
-😤 抗拒系: frown, disgust, scowl, serious, glaring, expressionless
-```
-每个 A 级场景也从 1 个口味区为主。
+**A 级 4 口味区**：😈诱惑系 `bedroom_eyes,seductive_smile,smirk,smug,biting_lip` / 😰崩溃系 `scared,despair,anguish,wince,jitome` / 🍷迷醉系 `drunk,heavy_blush,dilated_pupils,sleepy` / 😤抗拒系 `frown,disgust,scowl,glaring`
 
 ---
 
