@@ -45,6 +45,12 @@ compatibility:
 N=10 本子弧：封面(S) → ①B ②B ③A → ④⑤⑥⑦S → ⑧A → ⑨B
 N=5 堕落弧：C, B, A, S, S
 
+**N≠弧线标准长度时**：
+- N<标准：从中段抽掉节拍（先减重复等级）
+- N>标准：延长高潮段(S级多重复1~2张)或收尾段
+- 速攻/展示/NTR等短弧线 N>4：多余张数插入高潮段，S 级体位扩充不重复
+- 不清楚时在大纲阶段问用户"XX弧线标准N=4，你要5张的话我延长高潮段可以吗？"
+
 ---
 
 ## 等级速查
@@ -61,7 +67,8 @@ N=5 堕落弧：C, B, A, S, S
 ## 7+1模块
 
 ### 模块1：底座
-**有 LoRA**：`<lora:IL_Renbocloud Style:0.6>, (explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
+**Renbocloud**：`<lora:IL_Renbocloud Style:0.6>, (explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
+**WaiNSFW**：`(explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,` (WaiNSFW 已内置风格，不需要 LoRA，不需要 renbocloud 词)
 **无 LoRA**：`(explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
 
 ### 模块2：角色
@@ -107,7 +114,7 @@ S级模板见 `latex-catsuit-template.md`。用户说"换颜色/材质"即可改
 ```
 
 ### 模块6：姿势
-查 `arc-position-pairing.md`（12弧线×体位序列）。每级2~3候选，选后从 `position-library.md` 查视角+尺寸+**手部动作**。
+查 `arc-position-pairing.md`（13弧线×体位序列）。每级2~3候选，选后从 `position-library.md` 查视角+尺寸+**手部动作**。
 
 **基础动作点缀**（每张加1~2个，增加画面动感）：
 ```
@@ -137,7 +144,11 @@ C/B级多用 `hair_tucking, leaning, drying`（日常感）。A/S级多用 `trem
 织物: rumpled_sheets, pillow, mattress, cushions, torn_fabric
 ```
 
-**场景道具时间线**（锁场景但让时间流动——同阶段内递进）：
+**场景骨架 vs 微道具**（解冲突——场景骨架锁死，微道具允许流动）：
+- 场景骨架（地板类型/光照方案）：**同阶段完全锁死**，阶段切换才换
+- 微道具状态（蜡烛燃尽/床单凌乱/窗帘开合）：**允许同阶段递进**
+
+**场景道具时间线**（微道具——同阶段内递进）：
 ```
 S1(刚开始): candles lit, sheets slightly rumpled
 S2(干了): candles half burned, sheets tangled
@@ -181,7 +192,7 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 ### 致命禁区
 - gyaru 跟等级走(C/B不加, A开始, S全开)
 - 萝莉不加乳环 / 侧面体位 must from_side
-- ahegao自带 rolled eyes/tongue out 别叠
+- ahegao 自带 rolled_eyes/tongue_out/drooling——已用 ahegao 就别叠同效标签。选 ahegao 或 rolling_eyes+tongue_out 组合，二选一
 - `head hanging back` + `eye contact` = 💀
 - `face_close_up` ⊥ `upper_body`
 
@@ -206,7 +217,8 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 | 余韵(A) | 同场景氛围换 | 床乱/烛灭/晨光 |
 | 收尾(B) | 同场景或原点 | 穿衣/坐回 |
 
-**S 级 4 口味区**：🔥阿黑颜系 `ahegao,crossed_eyes,rolling_eyes,tongue_out,drooling` / 💀黑化系 `dark_persona,crazy,mind_broken,empty_eyes` / 💧崩坏系 `spasm,trembling,twitching,tears,moaning` / 🤤口水系 `saliva,drool_string,tongue_out,cum_on_face,cum_on_tongue`
+**S 级 4 口味区**（ahegao 已自带 rolling_eyes/tongue_out，口味区里的为可选替代品——和 ahegao 之间选 1 个方向不是全部叠加）：
+🔥阿黑颜系 `ahegao,crossed_eyes,rape_face,female_orgasm` / 💀黑化系 `dark_persona,crazy,mind_broken,empty_eyes` / 💧崩坏系 `spasm,trembling,twitching,tears,moaning` / 🤤口水系 `saliva,drool_string,long_tongue,cum_on_face,cum_on_tongue`
 
 **A 级 4 口味区**：😈诱惑系 `bedroom_eyes,seductive_smile,smirk,smug,biting_lip` / 😰崩溃系 `scared,despair,anguish,wince,jitome` / 🍷迷醉系 `drunk,heavy_blush,dilated_pupils,sleepy` / 😤抗拒系 `frown,disgust,scowl,glaring`
 

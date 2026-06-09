@@ -63,8 +63,8 @@
 | 组合名 | 公式 | 效果 |
 |--------|------|------|
 | **最色组合** | S镜头 × S表情 × S服装 | `between_legs × ahegao × crotchless` |
-| **第二色** | A镜头 × A表情 × A服装 | `from_below × tongue_out × latex` |
-| **隐藏色** | B镜头 × A服装 × B表情 | `peeping × clothes_removed × shy` |
+| **第二色** | A镜头 × A表情 × A服装 | `from_below × bedroom_eyes × latex` |
+| **隐藏色** | B镜头 × B服装 × B表情 | `peeping × skirt_lift × shy` |
 | **野外露出** | S镜头 × S场景 × A服装 | `upskirt × caught × park` |
 | **BDSM** | A配件 × S场景 × A姿势 | `collar × leash × bound_arms × dungeon` |
 | **温泉** | A场景 × C服装 × A表情 | `onsen × barefoot × wet_skin` |
