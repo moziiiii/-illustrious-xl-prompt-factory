@@ -16,7 +16,7 @@
 | 11 | 正面站立展示 | `hands on hips, one hand on thigh` | front_view, full_shot | 竖屏 | 站姿展示，体面 |
 | 12 | 坐姿端坐 | `hands on lap, back straight` | front_view, medium_shot | 竖屏 | 端正坐姿，C/B级用 |
 | 13 | 坐姿回眸 | `one hand on chair, looking back` | from_behind, three-quarter_view | 竖屏 | 坐姿回头看，B级勾引用 |
-| 14 | 跨坐挑逗(未插入) | `hands on his shoulders, leaning in` | from_side, medium_shot | 竖屏 | 跨坐腿上未插入，A级调情 |
+| 14 | 跨坐挑逗(未插入) | MF: `hands on his shoulders, leaning in` / Solo: `hands on own thighs, leaning forward` | from_side, medium_shot | 竖屏 | 跨坐腿上未插入，A级调情 |
 | 15 | 抱腿防御坐姿 | `arms hugging own legs, head down` | front_view, medium_shot | 竖屏 | 防御姿态，B级害羞 |
 | 16 | 站立抬腿暗示 | `one hand lifting skirt, other hand on wall` | from_side, full_shot | 竖屏 | 站姿抬腿露内裤，A级 |
 | 17 | 事后瘫软+拥抱 | `arms loosely around partner, head on chest` | from_side, full_shot | 横屏 | 温存/余韵 |
@@ -30,7 +30,7 @@
 | 4 | 后入 Doggy | `hands gripping sheets, fingers clawing` | from_behind, from_side | 竖屏 |
 | 5 | 站立后入 Standing Doggy | `hands against wall, fingers spread` | from_side | 竖屏 |
 | 6 | 跪姿口交 Blowjob | `hands on his thighs, fingers gripping` | from_side, from_below | 竖屏 |
-| 6b | 深喉口交 Deepthroat | `hands on his thighs, throat bulging` | from_side, profile, close-up | 竖屏 |
+| 11 | 深喉口交 Deepthroat | `hands on his thighs, throat bulging` | from_side, profile, close-up | 竖屏 |
 | 7 | M字掰穴流精 | `fingers spreading pussy, two fingers spreading labia` | from_above, between_legs | 竖屏 |
 | 8 | 回眸翘臀 | `hands spreading ass, looking back` | from_behind, ass_focus | 竖屏 |
 | 9 | 折叠压杀 Mating Press | `wrists pinned above head, hands clenched` | from_above, from_side | 竖屏 |

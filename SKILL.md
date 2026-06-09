@@ -2,7 +2,7 @@
 name: nsfw-prompt-factory
 description: >
   NSFW提示词工厂——给角色+主题+N张图，自动推断色情等级弧线并生成完整prompt。
-  基于S/A/B/C四级色情等级系统驱动标签选择。13条弧线×45+体位配对。
+  基于S/A/B/C四级色情等级系统驱动标签选择。13条弧线×60体位配对。
   触发："角色 + 主题 + 多少张图"。也支持单图+随机模式。先出剧情大纲确认，再展开prompt。
 compatibility:
   - SD WebUI Forge / ComfyUI
@@ -14,7 +14,7 @@ compatibility:
 
 ## 风格配置（用前说一次）
 
-`"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座+堕落标记自动切换。
+`"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座自动切换。
 
 ---
 
@@ -68,22 +68,22 @@ N=5 堕落弧：C, B, A, S, S
 
 ### 模块1：底座
 **Renbocloud**：`<lora:IL_Renbocloud Style:0.6>, (explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
-**WaiNSFW**：`(explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,` (WaiNSFW 已内置风格，不需要 LoRA，不需要 renbocloud 词)
+**WaiNSFW**：`masterpiece, best quality, newest,` ⚠️ 未验证——WaiNSFW 已内置NSFW风格，(explicit/nsfw)标签效果未知，建议先用单张测试底座
 **无 LoRA**：`(explicit:1.2), (nsfw:1.1), masterpiece, best quality, newest, excellent quality,`
 
 ### 模块2：角色
 - **角色标签**：查 `danbooru-character-tags.md`。C/B级原皮，A/S级堕落色
 - **男性**：**不默认，问用户**。首次双人图问"男主类型？BBC/亚裔/白人/无脸？" → `male-character-options.md`
-- **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一。MMF 用 `male behind, male in front` 不用 `male1, male2`
+- **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一。⚠️ 多人体位单提示词翻车率高——建议搭配 **Regional Prompter** 或 ComfyUI 区域分层，否则极容易出"融合怪"。纯文本方案：MMF 用 `male behind, male in front` 代替 `male1, male2`，但不保证不融合
 - **S级角色锚点防丢失**：堕落越深AI越画不像。每张 S 级强制保留 1 个角色特征锚点——`elf ears, pointed ears`(芙莉莲), `white hair twin tails`(芙莉莲), `ahoge`(芙宁娜), `horns`(甘雨) 等。从 Danbooru 外貌特征查
 
 ### 模块3：表情 — **词组轰炸+妆容时间线**
-从 `erotic-ranking.md` 按等级选 8~12 同义标签围攻。核心挂 1.3，其余裸词。角色堕落配色查 `character-database.md`
+从 `erotic-ranking.md` 按等级**精选 5~6 个**标签（不是堆量——是选不同维度的尖兵）。1个眼神+1个嘴部+1个面部泛红+1个精神状态+1~2个体液，核心挂 1.3 其余裸词。角色堕落配色查 `character-database.md`
 
-**体位→表情天然配对**（不是随机抽——每个体位有感身对应的表情区）：
+**体位→表情天然配对**（每个体位对应一个表情区，从该区**选 1 个主方向**展开。注意致命禁区：ahegao 和 rolling_eyes/tongue_out 互斥，二选一）：
 - 后背/回眸→**口水系** `tongue_out, drooling, saliva, looking_back`
 - 骑乘/正面→**诱惑系** `bedroom_eyes, seductive_smile, smirk`
-- 折叠/被压→**阿黑颜系** `crossed_eyes, rolling_eyes, ahegao`
+- 折叠/被压→**阿黑颜系** `ahegao` 或 `crossed_eyes, rolling_eyes` **（二选一，不叠）**
 - 口交/跪姿→**口水系+眼泪** `drooling, tears, saliva, tongue_out`
 - M字展示→**崩坏系** `twitching, spasm, trembling, mind_broken`
 
@@ -174,7 +174,7 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 |------|-----|
 | 权重上限 | **1.3** 不越线 |
 | 位置>数字 | 前排裸词 > 后排加权 |
-| 同义词围攻 | 12裸词 > 单(1.5) |
+| 同义词围攻 | 5-6 裸词(不同维度) > 单(1.5) |
 | 采样器 | Euler a |
 | Steps | 35 |
 | CFG | 4.5 |
@@ -183,7 +183,7 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 
 ### Hires锚点
 裸体+简单背景=Hires 找不到细节锚点→发焦/虚化/体液翻倍。
-- 裸体图 Hires Denoising 降到 **0.25**，或加最小锚点(脚环/腰链/项圈)
+- 裸体图 Hires Denoising 降到 **0.32**（Euler a 最低安全值；DPM++ 2M Karras/UniPC 可用 0.25），或加最小锚点(脚环/腰链/项圈)
 - 有服装纹理/蕾丝/场景细节的图才用 Denoising 0.38
 
 ### 体液
@@ -197,7 +197,11 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 - `face_close_up` ⊥ `upper_body`
 
 ### 反向词等级联动
-C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/penis/cock
+**C级** `(safe:1.3), exposed, naked, panties_removed, bra_removed, completely_naked, nsfw`
+**B级** `(safe:1.2), completely_naked, no_panties, exposed_pussy, nude`
+**A级** `(safe:1.2), buttoned, zipped, tidy, neat, fully_dressed, clothed`（防AI穿回去）
+**S级** `(safe:1.2), clothes, dressed, covered, panties, bra, skirt, shirt, dress`（防AI加衣服）
+双人不管等级：删 `male, penis, cock`。多人图额外加 `body_horror, merged_bodies, fused_limbs`
 
 ### 节奏
 每3~5张换角度/体位/服装。4张S级高潮体位不重复。
@@ -213,7 +217,7 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 |------|------|--------|
 | 建立(C/B) | 公开(公会/教室) | 整洁+日常光 |
 | 挑逗(B/A) | 私密(卧室/后台) | 布景开始松 |
-| 核心(S) | **同场景4张锁死** | 地板/床单/灯光。只换体位+表情+手部+镜头 |
+| 核心(S) | **同场景4张锁死** | 地板/床单/灯光。只换体位+表情+手部+镜头。⚠️ 纯文本换体位背景必偏移——ComfyUI 用户建议加 Depth ControlNet 或 IP-Adapter 锁背景 |
 | 余韵(A) | 同场景氛围换 | 床乱/烛灭/晨光 |
 | 收尾(B) | 同场景或原点 | 穿衣/坐回 |
 
@@ -261,7 +265,7 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 | `danbooru-character-tags.md` | 70+角色 Danbooru 标签(人气排行) |
 | `erotic-ranking.md` | S/A/B/C 6维度标签池+组合建议 |
 | `arc-position-pairing.md` | 13弧线×体位配对序列 |
-| `position-library.md` | 45+体位(含视角/尺寸) |
+| `position-library.md` | 60体位(含视角/尺寸) |
 | `compatibility-matrix.md` | 姿势↔镜头兼容表 |
 | `character-database.md` | 角色堕落配色+验证标记 |
 | `cover-templates.md` | 5种封面+对比公式 |
