@@ -2,7 +2,7 @@
 name: nsfw-prompt-factory
 description: >
   NSFW提示词工厂——给角色+主题+N张图，自动推断色情等级弧线并生成完整prompt。
-  基于S/A/B/C四级色情等级系统驱动标签选择。12条弧线×45+体位配对。
+  基于S/A/B/C四级色情等级系统驱动标签选择。13条弧线×45+体位配对。
   触发："角色 + 主题 + 多少张图"。也支持单图+随机模式。先出剧情大纲确认，再展开prompt。
 compatibility:
   - SD WebUI Forge / ComfyUI
@@ -24,7 +24,7 @@ compatibility:
 
 ---
 
-## 12条弧线
+## 13条弧线
 
 | 弧线 | 等级方向 | 逻辑 |
 |------|---------|------|
@@ -69,21 +69,53 @@ N=5 堕落弧：C, B, A, S, S
 ### 模块2：角色
 - **角色标签**：查 `danbooru-character-tags.md`。C/B级原皮，A/S级堕落色
 - **男性**：默认 `black man, muscular, dark skin, huge black cock, bbc`。用户可换，见 `male-character-options.md`
-- **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一
+- **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一。MMF 用 `male behind, male in front` 不用 `male1, male2`
+- **S级角色锚点防丢失**：堕落越深AI越画不像。每张 S 级强制保留 1 个角色特征锚点——`elf ears, pointed ears`(芙莉莲), `white hair twin tails`(芙莉莲), `ahoge`(芙宁娜), `horns`(甘雨) 等。从 Danbooru 外貌特征查
 
-### 模块3：表情 — **词组轰炸**
+### 模块3：表情 — **词组轰炸+妆容时间线**
 从 `erotic-ranking.md` 按等级选 8~12 同义标签围攻。核心挂 1.3，其余裸词。角色堕落配色查 `character-database.md`
 
+**体位→表情天然配对**（不是随机抽——每个体位有感身对应的表情区）：
+- 后背/回眸→**口水系** `tongue_out, drooling, saliva, looking_back`
+- 骑乘/正面→**诱惑系** `bedroom_eyes, seductive_smile, smirk`
+- 折叠/被压→**阿黑颜系** `crossed_eyes, rolling_eyes, ahegao`
+- 口交/跪姿→**口水系+眼泪** `drooling, tears, saliva, tongue_out`
+- M字展示→**崩坏系** `twitching, spasm, trembling, mind_broken`
+
+**妆容时间线**（同阶段内递进，不是每张一样）：
+```
+S1(刚开始): lipstick intact, hair slight mess
+S2(干了): lipstick smeared, hair wild, mascara running
+S3(疯了): lipstick ruined, hair completely wild
+S4(坏了): lipstick gone, hair drenched in sweat/cum
+```
+
 ### 模块4：肉体
-萝莉体：petite, flat chest **不加乳环**。成女：huge breasts
+萝莉体：petite, flat chest **不加乳环**。成女：huge breasts。
+**阴毛**：默认无，不提。熟女/BBW/用户指定→加 `pubic_hair, thick_pubic_hair, (black pussy:1.2)` 问用户要不要。腋毛同理，不要默认加。
 
 ### 模块5：服装弧线
 C原皮 → B微敞 → A破损+首个BDSM → **S母狗制服(9锚点latex)**
 
 S级模板见 `latex-catsuit-template.md`。用户说"换颜色/材质"即可改。
 
+**B/A级服装质感轮换**（每张从各列选1~2个，别15张全一样）：
+```
+破损方式: torn, ripped, unbuttoned, zipper_down, drawstring_loose, side_slit, ass_cutout, pulled_aside
+材质(非latex场景): denim, lace, sheer, spandex, fur_trim, see-through, wet_clothes, fine_fabric
+装饰: frilled, layered, side_cutout, o-ring, loose_belt, turtleneck, halter_top
+```
+
 ### 模块6：姿势
-查 `arc-position-pairing.md`（12弧线×体位序列）。每级2~3候选，选后从 `position-library.md` 查视角+尺寸。
+查 `arc-position-pairing.md`（12弧线×体位序列）。每级2~3候选，选后从 `position-library.md` 查视角+尺寸+**手部动作**。
+
+**基础动作点缀**（每张加1~2个，增加画面动感）：
+```
+leaning_forward, leaning_back, arched_back, presenting, hair_tucking,
+against_glass, wiping_tears, trembling, twitching, flexing, spinning,
+cuddling, dragging, hanging, biting, drinking, drying, bathing
+```
+C/B级多用 `hair_tucking, leaning, drying`（日常感）。A/S级多用 `trembling, twitching, arched_back, against_glass`（失控感）。别叠超过2个。
 
 ### 模块7：机位/环境
 按等级选镜头。兼容性查 `compatibility-matrix.md`
@@ -97,6 +129,21 @@ S级模板见 `latex-catsuit-template.md`。用户说"换颜色/材质"即可改
 ⑤ glowing neon lights, purple and blue ambient, dark atmosphere, moody_lighting
 ```
 每3~5张换一种光照。裸露图避免①（粉紫渐变+裸体=容易翻车），选②④。
+
+**场景质感轮换**（每张图从每列选1个，别15张同一种地板/道具/织物）：
+```
+地板: tile_floor, wooden_floor, wet_floor, cold_stone_floor, carpet, dirty_floor
+道具: curtains, mirror, candles, scattered_clothes, window, lamp, broken_items
+织物: rumpled_sheets, pillow, mattress, cushions, torn_fabric, discarded_blanket
+```
+
+**场景道具时间线**（锁场景但让时间流动——同阶段内递进）：
+```
+S1(刚开始): candles lit, sheets slightly rumpled
+S2(干了): candles half burned, sheets tangled
+S3(疯了): candles nearly gone, sheets soaked
+S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
+```
 
 ### 模块8：堕落标记（S级专用）
 身体写字(3~5部位)：`cum dump on belly, public property on thigh, free use on chest, whore on forehead, BBC only above pussy` 等。分布额头+胸+肚子+大腿+臀。
@@ -137,12 +184,71 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 ### 节奏
 每3~5张换角度/体位/服装。4张S级高潮体位不重复。
 
+### 反模板引擎（最重要——防止套用同一套标签）
+
+**不是池子大了就丰富——是选择规则决定丰富度。**
+
+| 规则 | 说明 |
+|------|------|
+| **表情池分区** | 同等级 20+ 个表情标签，分 4 个"口味区"。每次生成从不同口味区挑，不是从全体池子挑 |
+| **体位轮换** | 同弧线同等级有 2~3 候选体位，强制和前一张不同 |
+| **光照按阶段轮换** | 5 种光照，同阶段不变，阶段切换时换 |
+| **手部动作绑定体位** | 每个体位有专属手部动作，换体位=手部自动换 |
+| **场景质感同阶段锁死** | 同阶段同场景→地板/道具/织物不变。阶段切换才换 |
+| **同一主题二次运行** | 第二次跑同主题，起始区+体位首选项全换 |
+
+### 阶段场景锁（核心——不是每张图换场景）
+
+```
+同一个阶段 = 同一个地点 + 同一个环境细节
+不同阶段 = 场景可以切换（如公会→卧室→暗巷）
+```
+
+| 阶段 | 场景规则 |
+|------|---------|
+| **建立**(C/B) | 公开场景(公会/教室/法庭)，整洁，日常光照 |
+| **挑逗**(B/A) | 过渡私密场景(卧室/后台/浴室)，布景开始松动 |
+| **核心高潮**(S) | **同场景连续4张**。地板/床单/道具/光照全锁死。4张只换：体位+表情口味区+手部+镜头角度 |
+| **余韵**(A) | 同场景但氛围切换——床更乱、蜡烛熄灭、晨光入窗 |
+| **收尾**(B) | 同场景或回到原点——穿回衣服、坐回原位 |
+
+**S级表情 4 口味区**（从池子里挑不同分区）：
+```
+🔥 阿黑颜系: ahegao, rape_face, female_orgasm, crossed_eyes, rolling_eyes, tongue_out, drooling
+💀 黑化系: dark_persona, crazy, mind_broken, multiple_persona, empty_eyes, expressionless
+💧 崩坏系: spasm, trembling, twitching, tears, heavy_breathing, moaning, endured_face
+🤤 口水系: saliva, drool_string, long_tongue, cum_on_face, cum_on_tongue, open_mouth
+```
+每个 S 级场景从 1 个口味区为主 + 从其他 3 区各借 1~2 个标签。别 4 张 S 级全用阿黑颜系。
+
+**A级表情 4 口味区**：
+```
+😈 诱惑系: bedroom_eyes, seductive_smile, smirk, smug, naughty_face, biting_lip, licking_lips
+😰 崩溃系: scared, despair, anguish, wince, jitome, trembling, endured_face
+🍷 迷醉系: drunk, heavy_blush, dilated_pupils, sleepy, confused, heavy_breathing
+😤 抗拒系: frown, disgust, scowl, serious, glaring, expressionless
+```
+每个 A 级场景也从 1 个口味区为主。
+
 ---
 
 ## 输出控制
 - `"全展开"` → 一次性输出
 - `"一张一张来"` → 逐张
 - `"生成发布信息"` → 中日双语标题标签
+
+## 封面→① 闪回标记
+封面 S 级(她坏掉的结果) → ① B 级(她曾经的样子)。大纲标注 `⏪ 闪回：时间倒流到堕落之前`。读者看封面好奇"怎么变这样的"，从头看过程。
+
+## 组图完成后检查清单
+用户跑完一组，主动问：
+- ✅ 服装弧线连贯？(C整齐→B微敞→A破损→S母狗制服)
+- ✅ 阶段场景切换合理？(公会→卧室→卧室→卧室→卧室)
+- ✅ S级高潮段地板/床单/灯光锁死？
+- ✅ 体位 4 张不重复？
+- ✅ 每张 S 级有至少 1 个角色特征锚点？
+- ✅ 封面有原皮残留+现在堕落对比？
+- 有一项不对→指出哪张重新跑
 
 ---
 
