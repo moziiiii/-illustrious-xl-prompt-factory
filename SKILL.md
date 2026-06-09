@@ -39,6 +39,7 @@ compatibility:
 | 浪漫 | C→B→A→B | 不过A级，温存收尾 |
 | 穿衣 | S→A→B→C | 全裸→内衣→半遮→整齐 |
 | 戏态 | B→S→B→S | 装→崩→又装→又崩 |
+| 圣洁反差 | C→B→A→S | 圣母/新娘→堕落。光环/婚纱+项圈/精液=反差冲击 |
 | Pixiv本子 | 山形 | 封面S→建立B→挑逗→核心S高潮→余韵A→收尾B |
 
 N=10 本子弧：封面(S) → ①B ②B ③A → ④⑤⑥⑦S → ⑧A → ⑨B
@@ -105,6 +106,14 @@ S级模板见 `latex-catsuit-template.md`。用户说"换颜色/材质"即可改
 | Hires | 4x-UltraSharp 2x, CFG 4, Denoising 0.38 |
 | 分辨率 | 832×1216 / 1216×832 |
 
+### Hires锚点
+裸体+简单背景=Hires 找不到细节锚点→发焦/虚化/体液翻倍。
+- 裸体图 Hires Denoising 降到 **0.25**，或加最小锚点(脚环/腰链/项圈)
+- 有服装纹理/蕾丝/场景细节的图才用 Denoising 0.38
+
+### 体液
+裸体图/近景 `sweat` 一个字够用，最多 `glossy skin`。`body oil, saliva, drool` 在 Hires 时会翻倍溢出。
+
 ### 致命禁区
 - gyaru 跟等级走(C/B不加, A开始, S全开)
 - 萝莉不加乳环 / 侧面体位 must from_side
@@ -141,3 +150,4 @@ C防暴露 / B防脱光 / A防AI穿回去 / S防AI加衣服。双人删 male/pen
 | `latex-catsuit-template.md` | 9锚点母狗服模板 |
 | `male-character-options.md` | 男性角色可选模板 |
 | `inpaint-hand-fix.md` | Inpaint 手脚修复一体化模板 |
+| `advanced-techniques.md` | 进阶技巧：Hires锚点/妆容/体液/多人空间/圣洁反差 |
