@@ -1,13 +1,14 @@
 ---
-name: nsfw-prompt-factory
+name: illustrious-xl-prompt-factory
 description: >
-  NSFW提示词工厂——给角色+主题+N张图，自动推断色情等级弧线并生成完整prompt。
-  基于S/A/B/C四级色情等级系统驱动标签选择。13条弧线×60体位配对。
-  触发："角色 + 主题 + 多少张图"。也支持单图+随机模式。先出剧情大纲确认，再展开prompt。
+  Illustrious XL 提示词工厂——基于S/A/B/C四级色情等级系统，13弧线×60体位配对。
+  触发："角色 + 主题 + 多少张图"。面向成人创作者，所有角色均已成年。
 compatibility:
   - SD WebUI Forge / ComfyUI
   - Illustrious-XL v2.0 系 (NoobAI/WaiNSFW/HassakuXL 兼容)
-  - Renbocloud Style LoRA (0.6, 可选)
+---
+
+> ⚠️ 本工具仅用于成人创作。所有角色必须在设定上成年（18+）。不生成、不鼓励涉及未成年人的内容。
 ---
 
 # NSFW 提示词工厂
@@ -103,10 +104,8 @@ S级4张 → S1→S2→S3→S4 / S级5+张 → S1维持1张, S2-S3循环, 最后
 S1: lipstick intact, hair slight mess / S2: lipstick smeared, hair wild / S3: lipstick ruined, hair destroyed / S4: lipstick gone, hair drenched in sweat/cum
 
 ### 模块4：肉体
-**保持角色原设体型**，从 `character-database.md` 或 `danbooru-character-tags.md` 查。不主动加大胸/肥臀。
-- 萝莉体：petite, flat chest **不加乳环**
-- 成女原设体型：不额外改成 huge，除非用户要求
-**阴毛**：默认无。熟女/BBW/用户指定→加 `pubic_hair, thick_pubic_hair, (black pussy:1.2)` 问用户要不要。
+**保持角色原设体型**，从 `character-database.md` 或 `danbooru-character-tags.md` 查。不主动改身材。
+**阴毛**：默认无。熟女/BBW/用户指定→加 `pubic_hair, thick_pubic_hair` 问用户要不要。
 
 ### 模块5：服装弧线
 C原皮 → B微敞 → A破损+首个BDSM → **S母狗制服(9锚点latex)**
@@ -198,7 +197,7 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 
 ### 致命禁区
 - gyaru 跟等级走(C/B不加, A开始, S全开)
-- 萝莉不加乳环 / 侧面体位 must from_side
+- 侧面体位 must from_side
 - ahegao 自带 rolled_eyes/tongue_out/drooling——已用 ahegao 就别叠同效标签。选 ahegao 或 rolling_eyes+tongue_out 组合，二选一
 - `head hanging back` + `eye contact` = 💀（物理矛盾：头后仰时颈椎无法正面直视镜头，AI会撕裂脖子）
 - `face_close_up` ⊥ `upper_body`（构图层级冲突：close_up裁到胸以上，upper_body要腰部，同框→身体截断）
