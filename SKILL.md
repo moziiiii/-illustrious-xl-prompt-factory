@@ -12,7 +12,17 @@ compatibility:
 
 # NSFW 提示词工厂
 
+## 触发条件
+
+用户输入匹配以下任一模式时激活：
+- `[角色名] + [主题/弧线关键词] + [数字]张`
+- `[角色名] + [等级S/A/B/C] + [描述]`
+- `"帮我写 NSFW prompt"` `"生成一组图"`
+- `"随机S级"` `"全展开"` `"一张一张来"`
+
 ## 风格配置（用前说一次）
+
+`"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座自动切换。
 
 `"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座自动切换。
 
@@ -75,7 +85,7 @@ N=5 堕落弧：C, B, A, S, S
 - **角色标签**：查 `danbooru-character-tags.md`。C/B级原皮，A/S级堕落色
 - **男性**：**不默认，问用户**。首次双人图问"男主类型？BBC/亚裔/白人/无脸？" → `male-character-options.md`
 - **FFM/多人**：体型紧贴角色名+权重，衣服只写颜色+choker，表情共享，公用材质末尾统一。⚠️ 多人体位单提示词翻车率高——建议搭配 **Regional Prompter** 或 ComfyUI 区域分层，否则极容易出"融合怪"。纯文本方案：MMF 用 `male behind, male in front` 代替 `male1, male2`，但不保证不融合
-- **S级角色锚点防丢失**：堕落越深AI越画不像。每张 S 级强制保留 1 个角色特征锚点——`elf ears, pointed ears`(芙莉莲), `white hair twin tails`(芙莉莲), `ahoge`(芙宁娜), `horns`(甘雨) 等。从 Danbooru 外貌特征查
+- **S级角色锚点防丢失**：堕落越深AI越画不像。每张 S 级强制保留 1 个角色特征锚点——`elf ears`(芙莉莲), `ahoge`(芙宁娜), `horns`(甘雨), `braid`(雷电将军) 等。从 Danbooru 外貌特征查，一行解决
 
 ### 模块3：表情 — **词组轰炸+妆容时间线**
 从 `erotic-ranking.md` 按等级**精选 5~6 个**标签（不是堆量——是选不同维度的尖兵）。1个眼神+1个嘴部+1个面部泛红+1个精神状态+1~2个体液，核心挂 1.3 其余裸词。角色堕落配色查 `character-database.md`
@@ -87,13 +97,12 @@ N=5 堕落弧：C, B, A, S, S
 - 口交/跪姿→**口水系+眼泪** `drooling, tears, saliva, tongue_out`
 - M字展示→**崩坏系** `twitching, spasm, trembling, mind_broken`
 
-**妆容时间线**（同阶段内递进，不是每张一样）：
+**妆容时间线**（S级张数映射，同阶段内递进）：
 ```
-S1(刚开始): lipstick intact, hair slight mess
-S2(干了): lipstick smeared, hair wild, mascara running
-S3(疯了): lipstick ruined, hair completely wild
-S4(坏了): lipstick gone, hair drenched in sweat/cum
+S级1张 → S4终态 / S级2张 → S2→S4 / S级3张 → S2→S3→S4
+S级4张 → S1→S2→S3→S4 / S级5+张 → S1维持1张, S2-S3循环, 最后S4
 ```
+S1: lipstick intact, hair slight mess / S2: lipstick smeared, hair wild / S3: lipstick ruined, hair destroyed / S4: lipstick gone, hair drenched in sweat/cum
 
 ### 模块4：肉体
 **保持角色原设体型**，从 `character-database.md` 或 `danbooru-character-tags.md` 查。不主动加大胸/肥臀。
@@ -193,8 +202,8 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 - gyaru 跟等级走(C/B不加, A开始, S全开)
 - 萝莉不加乳环 / 侧面体位 must from_side
 - ahegao 自带 rolled_eyes/tongue_out/drooling——已用 ahegao 就别叠同效标签。选 ahegao 或 rolling_eyes+tongue_out 组合，二选一
-- `head hanging back` + `eye contact` = 💀
-- `face_close_up` ⊥ `upper_body`
+- `head hanging back` + `eye contact` = 💀（物理矛盾：头后仰时颈椎无法正面直视镜头，AI会撕裂脖子）
+- `face_close_up` ⊥ `upper_body`（构图层级冲突：close_up裁到胸以上，upper_body要腰部，同框→身体截断）
 
 ### 反向词等级联动
 **C级** `(safe:1.3), exposed, naked, panties_removed, bra_removed, completely_naked, nsfw`
@@ -255,6 +264,14 @@ S4(坏了): candles out, moonlight/dawn creeping in, sheets destroyed
 - ✅ 每张 S 级有至少 1 个角色特征锚点？
 - ✅ 封面有原皮残留+现在堕落对比？
 - 有一项不对→指出哪张重新跑
+
+---
+
+## 故障降级
+- `arc-position-pairing.md` 缺失 → 默认堕落弧体位：站→坐→跪→后背→折叠
+- `position-library.md` 缺失 → 通用姿势 `missionary, doggystyle, cowgirl` + 自己做手部动作
+- `erotic-ranking.md` 缺失 → 裸写表情词，不用口味区
+- 多人图纯文本 → 默认 MF 模式（MMF/FFM 只在有 Regional Prompter/ComfyUI 时推荐）
 
 ---
 
