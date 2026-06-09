@@ -24,8 +24,6 @@ compatibility:
 
 `"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座自动切换。
 
-`"我用 Renbocloud"` / `"我用 WaiNSFW"` / `"无 LoRA"` → 底座自动切换。
-
 ---
 
 ## 核心流程
